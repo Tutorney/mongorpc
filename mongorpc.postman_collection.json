@@ -1,0 +1,229 @@
+{
+	"info": {
+		"_postman_id": "f8bf40df-6630-4f0f-8a42-65b13c022b55",
+		"name": "mongorpc",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "insert",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "13ef0677-0bea-4413-a8c8-1ffb7696a22b",
+						"exec": [
+							"pm.test(\"insert works\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"collection\": \"{{collection}}\",\n    \"dbName\": \"{{dbName}}\",\n    \"method\": \"insert\",\n    \"args\": [{ \"_id\":0, \"item\": \"card\", \"qty\": 15 }]\n}"
+				},
+				"url": {
+					"raw": "{{base}}/",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "find",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ce6c87b1-5bf1-406b-a378-c81558da7d24",
+						"exec": [
+							"pm.test(\"find works\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.eql([{ \"_id\":0, \"item\": \"card\", \"qty\": 15 }])",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"collection\": \"{{collection}}\",\n    \"dbName\": \"{{dbName}}\",\n    \"method\": \"find\"\n}"
+				},
+				"url": {
+					"raw": "{{base}}/",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c11d952b-0afb-4df9-b9d5-b1c49410d8ff",
+						"exec": [
+							"pm.test(\"update works\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.eql({",
+							"    \"n\": 1,",
+							"    \"nModified\": 1,",
+							"    \"ok\": 1",
+							"});",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"collection\": \"{{collection}}\",\n    \"dbName\": \"{{dbName}}\",\n    \"method\": \"update\",\n    \"args\": [\n        {\n            \"item\": \"card\",\n            \"qty\": 15\n        },\n        {\n            \"$set\": {\n                \"qty\": 30\n            }\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "{{base}}/",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteOne",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3e0ebbf8-162b-4c91-a6c0-bb17e82ee1e0",
+						"exec": [
+							"pm.test(\"deleteOne works\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.eql({",
+							"    \"n\": 1,",
+							"    \"ok\": 1",
+							"});",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"collection\": \"{{collection}}\",\n    \"dbName\": \"{{dbName}}\",\n    \"method\": \"deleteOne\",\n    \"args\": [{ \"item\": \"card\" }]\n}"
+				},
+				"url": {
+					"raw": "{{base}}/",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "d2e63be4-fe11-40e4-a131-4d4b175648eb",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "9b0b10d9-ff77-422a-b669-0722513d03ab",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "c6d05595-c77b-41fc-a20b-b6fb779a7660",
+			"key": "base",
+			"value": "http://0.0.0.0:3002",
+			"type": "string"
+		},
+		{
+			"id": "26b4fd93-ce17-40e8-91bc-1dbb3e481d63",
+			"key": "collection",
+			"value": "products",
+			"type": "string"
+		},
+		{
+			"id": "50837a95-73ca-4d0e-bc7b-9f516bc98ee4",
+			"key": "dbName",
+			"value": "mongoRpc",
+			"type": "string"
+		}
+	]
+}

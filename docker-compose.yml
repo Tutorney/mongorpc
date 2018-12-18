@@ -1,0 +1,16 @@
+version: '3'
+services:
+  mongorpc:
+    build: .
+    depends_on:
+      - mongo
+    environment:
+      MONGO_URL: mongodb://root:example@mongo/
+    ports:
+      - 3002:3002
+  mongo:
+    image: mongo:4.0
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example

@@ -1,0 +1,20 @@
+{
+  "name": "myproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "docker-compose build && docker-compose up --detach && npx newman run mongorpc.postman_collection.json; docker-compose down --volumes"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.6.2",
+    "koa-bodyparser": "^4.2.1",
+    "mongodb": "^2.2.36",
+    "p-retry": "^3.0.0"
+  },
+  "devDependencies": {
+    "newman": "^4.2.3"
+  }
+}
