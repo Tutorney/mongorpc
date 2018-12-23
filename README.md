@@ -6,7 +6,13 @@ through a HTTP interface.
 
 ## Start Server
 
+Besides running the server locally.
+
 `MONGO_URL='mongodb://{{host}}:{{port}}/' npm start`
+
+The image of this service is also available on [Docker Hub][3].
+
+[3]: https://hub.docker.com/r/waitingavian/mongorpc "waitingavian/mongorpc - Docker Hub"
 
 ## Usage
 
