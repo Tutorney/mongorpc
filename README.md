@@ -1,4 +1,4 @@
-# mongorpc
+# MongoRPC
 
 A RPC service that exposes the preconfigured mongodb instance publicly. This is
 originally developed so that mongodb can be easily manipulated during testing
