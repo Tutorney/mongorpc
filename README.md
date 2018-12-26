@@ -37,7 +37,24 @@ The cURL command above is roughly converted to the following code:
 })();
 ```
 
-The following cURL command is translated into
+To call multiple rpcs in one request sequentially, make the body an array. For example:
+
+```sh
+curl -X POST \
+  http://0.0.0.0:3002/ \
+  -H 'Content-Type: application/json' \
+  -d '[{
+    "collection": "products",
+    "dbName": "mongoRpc",
+    "method": "insert",
+    "args": [{ "_id":0, "item": "card", "qty": 15 }]
+}, {
+    "collection": "products",
+    "dbName": "mongoRpc",
+    "method": "insert",
+    "args": [{ "_id":1, "item": "card", "qty": 15 }]
+}]'
+```
 
 ## Run test locally
 
