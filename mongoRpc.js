@@ -10,7 +10,7 @@ const call = async (url, {collection, dbName, method, args = []}) => {
   const db = client.db(dbName);
   try {
     const r = await db.collection(collection)[method](...args);
-    return typeof r.toArray === 'function' ? await r.toArray() : r;
+    return r && typeof r.toArray === 'function' ? await r.toArray() : r;
   } finally {
     db.close();
   }
