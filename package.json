@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "docker-compose build && docker-compose up --detach && npx newman run mongorpc.postman_collection.json; docker-compose down --volumes"
+    "test": "docker-compose build && docker-compose up --detach && npm run newman; docker-compose down --volumes",
+    "newman": "newman run mongorpc.postman_collection.json"
   },
   "author": "",
   "license": "ISC",
