@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "f8bf40df-6630-4f0f-8a42-65b13c022b55",
+		"_postman_id": "3db45a60-f83a-48fe-9953-e81b8dae0e11",
 		"name": "mongorpc",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -77,6 +77,53 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"collection\": \"{{collection}}\",\n    \"dbName\": \"{{dbName}}\",\n    \"method\": \"find\"\n}"
+				},
+				"url": {
+					"raw": "{{base}}/",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "multiple finds",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ce6c87b1-5bf1-406b-a378-c81558da7d24",
+						"exec": [
+							"pm.test(\"find works\", function() {",
+							"  var jsonData = pm.response.json();",
+							"  pm.expect(jsonData).to.eql([",
+							"    [{ _id: 0, item: \"card\", qty: 15 }],",
+							"    [{ _id: 0, item: \"card\", qty: 15 }]",
+							"  ]);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"collection\": \"{{collection}}\",\n        \"dbName\": \"{{dbName}}\",\n        \"method\": \"find\"\n    },\n    {\n        \"collection\": \"{{collection}}\",\n        \"dbName\": \"{{dbName}}\",\n        \"method\": \"find\"\n    }\n]"
 				},
 				"url": {
 					"raw": "{{base}}/",
